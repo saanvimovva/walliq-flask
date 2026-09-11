@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wallet IQ - Intelligent Wallet Risk Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="hero">
+        <p class="eyebrow">Wallet IQ</p>
+        <h1>Intelligent wallet risk analysis</h1>
+        <p>
+          A read-only risk intelligence workspace that connects wallet activity, token exposure,
+          NFT holdings, public ENS identity, market pricing, and AI analysis into one explainable view.
+        </p>
+        <div class="hero-chips" aria-label="Integrated data sources">
+          <span>RPC verified</span>
+          <span>ENS identity clue</span>
+          <span>Alchemy activity</span>
+          <span>CoinGecko pricing</span>
+          <span>OpenSea NFTs</span>
+          <span>AI analyst</span>
+        </div>
+      </section>
+
+      <section class="lookup-panel">
+        <form id="lookupForm">
+          <label for="walletAddress">Wallet address</label>
+          <div class="input-row">
+            <input id="walletAddress" name="walletAddress" placeholder="0x..." autocomplete="off" spellcheck="false" />
+            <button type="submit">Analyze</button>
+          </div>
+          <div class="address-status" id="addressStatus">Waiting for a wallet address.</div>
+        </form>
+
+        <label for="network">
+          Network
+          <select id="network">
+            <option value="base">Base Mainnet</option>
+            <option value="ethereum">Ethereum Mainnet</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="sample-row" aria-label="Sample wallet addresses">
+        <button class="sample" type="button" data-address="0x742d35Cc6634C0532925a3b844Bc454e4438f44e" data-network="base">Base sample</button>
+        <button class="sample" type="button" data-address="0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913" data-network="base">Base USDC contract</button>
+        <button class="sample" type="button" data-address="0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045" data-network="ethereum">Ethereum sample</button>
+        <button class="sample" type="button" data-address="0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" data-network="ethereum">Ethereum USDC contract</button>
+      </section>
+
+      <section class="summary" id="summary">
+        <strong>Ready</strong>
+        <span>Enter a valid EVM wallet address to run one backend lookup.</span>
+      </section>
+
+      <section class="tab-shell">
+        <div class="tab-list" role="tablist" aria-label="Wallet intelligence sections">
+          <button class="tab-button active" type="button" role="tab" aria-selected="true" aria-controls="tab-sources" data-tab="tab-sources">Sources</button>
+          <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="tab-overview" data-tab="tab-overview">Overview</button>
+          <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="tab-activity" data-tab="tab-activity">Activity</button>
+          <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="tab-nfts" data-tab="tab-nfts">NFTs</button>
+          <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="tab-ai" data-tab="tab-ai">AI Analyst</button>
+        </div>
+
+        <section class="tab-panel active" id="tab-sources" role="tabpanel">
+          <div class="panel-title">
+            <h2>Data sources</h2>
+            <span>Backend status</span>
+          </div>
+          <div class="source-list" id="sourceList">
+            <div class="empty">No lookup has been run yet.</div>
+          </div>
+        </section>
+
+        <section class="tab-panel" id="tab-overview" role="tabpanel" hidden>
+          <div class="tab-grid">
+            <article class="tab-section">
+              <div class="panel-title">
+                <h2>Owner conclusion</h2>
+                <span>Best available evidence</span>
+              </div>
+              <div class="cards" id="ownerPanel"><div class="empty">No lookup has been run yet.</div></div>
+            </article>
+
+            <article class="tab-section">
+              <div class="panel-title">
+                <h2>Wallet signals</h2>
+                <span>Flask RPC service</span>
+              </div>
+              <div class="cards" id="walletSignals"><div class="empty">No lookup has been run yet.</div></div>
+            </article>
+
+            <article class="tab-section">
+              <div class="panel-title">
+                <h2>ENS reverse lookup</h2>
+                <span>Public name signal</span>
+              </div>
+              <div class="cards" id="ensIntel"><div class="empty">No lookup has been run yet.</div></div>
+            </article>
+
+            <article class="tab-section">
+              <div class="panel-title">
+                <h2>Alchemy enrichment</h2>
+                <span>Tokens and transfers</span>
+              </div>
+              <div class="cards" id="alchemyIntel"><div class="empty">No lookup has been run yet.</div></div>
+            </article>
+
+            <article class="tab-section">
+              <div class="panel-title">
+                <h2>CoinGecko pricing</h2>
+                <span>Token market data</span>
+              </div>
+              <div class="cards" id="coingeckoIntel"><div class="empty">No lookup has been run yet.</div></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="tab-panel" id="tab-activity" role="tabpanel" hidden>
+          <div class="panel-title">
+            <h2>Transactions</h2>
+            <span>Alchemy transfer history</span>
+          </div>
+          <div class="filters" id="transactionFilters">
+            <button class="filter active" type="button" data-filter="all">All</button>
+            <button class="filter" type="button" data-filter="send">Sent</button>
+            <button class="filter" type="button" data-filter="receive">Received</button>
+            <button class="filter" type="button" data-filter="approve">Approvals</button>
+            <button class="filter" type="button" data-filter="contract">Contract calls</button>
+          </div>
+          <div class="transactions" id="transactions">
+            <div class="empty">Run a lookup to show recent decoded transactions.</div>
+          </div>
+        </section>
+
+        <section class="tab-panel" id="tab-nfts" role="tabpanel" hidden>
+          <div class="panel-title">
+            <h2>OpenSea NFTs</h2>
+            <span>Holdings and collections</span>
+          </div>
+          <div class="cards" id="openseaIntel"><div class="empty">No lookup has been run yet.</div></div>
+        </section>
+
+        <section class="tab-panel" id="tab-ai" role="tabpanel" hidden>
+          <div class="panel-title">
+            <h2>AI analyst</h2>
+            <span>OpenAI backend analysis</span>
+          </div>
+          <div class="ai-panel" id="aiAnalysis">
+            <div class="empty">Run a lookup to generate an analyst summary from the integrated sources.</div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

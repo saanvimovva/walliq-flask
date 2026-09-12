@@ -12,8 +12,8 @@ import requests
 
 
 NETWORKS = {
-    "base": {"alchemy": "base-mainnet", "name": "Base Mainnet"},
-    "ethereum": {"alchemy": "eth-mainnet", "name": "Ethereum Mainnet"},
+    "base": {"alchemy": "base-mainnet", "name": "Base"},
+    "ethereum": {"alchemy": "eth-mainnet", "name": "Ethereum"},
 }
 
 

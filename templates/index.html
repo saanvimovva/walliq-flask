@@ -38,17 +38,15 @@
         <label for="network">
           Network
           <select id="network">
-            <option value="base">Base Mainnet</option>
-            <option value="ethereum">Ethereum Mainnet</option>
+            <option value="base">Base</option>
+            <option value="ethereum">Ethereum</option>
           </select>
         </label>
       </section>
 
       <section class="sample-row" aria-label="Sample wallet addresses">
         <button class="sample" type="button" data-address="0x742d35Cc6634C0532925a3b844Bc454e4438f44e" data-network="base">Base sample</button>
-        <button class="sample" type="button" data-address="0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913" data-network="base">Base USDC contract</button>
         <button class="sample" type="button" data-address="0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045" data-network="ethereum">Ethereum sample</button>
-        <button class="sample" type="button" data-address="0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" data-network="ethereum">Ethereum USDC contract</button>
       </section>
 
       <section class="summary" id="summary">
@@ -128,8 +126,6 @@
             <button class="filter active" type="button" data-filter="all">All</button>
             <button class="filter" type="button" data-filter="send">Sent</button>
             <button class="filter" type="button" data-filter="receive">Received</button>
-            <button class="filter" type="button" data-filter="approve">Approvals</button>
-            <button class="filter" type="button" data-filter="contract">Contract calls</button>
           </div>
           <div class="transactions" id="transactions">
             <div class="empty">Run a lookup to show recent decoded transactions.</div>

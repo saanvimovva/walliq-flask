@@ -10,7 +10,7 @@ TRANSFER_TOPIC = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523
 NETWORKS = {
     "base": {
         "id": "base",
-        "name": "Base Mainnet",
+        "name": "Base",
         "rpc_url": "https://mainnet.base.org",
         "chain_id": "0x2105",
         "currency": "ETH",
@@ -21,7 +21,7 @@ NETWORKS = {
     },
     "ethereum": {
         "id": "ethereum",
-        "name": "Ethereum Mainnet",
+        "name": "Ethereum",
         "rpc_url": "https://ethereum-rpc.publicnode.com",
         "chain_id": "0x1",
         "currency": "ETH",

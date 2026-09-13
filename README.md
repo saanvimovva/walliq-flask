@@ -19,6 +19,8 @@ Browser UI
 
 The browser is only the presentation layer. It does not contain RPC URLs, USDC contract addresses, vendor API keys, AI prompts, or blockchain integration logic.
 
+Design note: each provider is isolated in its own backend service module so new data sources can be added without changing the browser UI or exposing API keys.
+
 ## Project Structure
 
 ```text
